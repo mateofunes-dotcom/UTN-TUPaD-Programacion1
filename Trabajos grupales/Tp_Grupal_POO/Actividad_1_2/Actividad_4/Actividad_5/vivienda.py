@@ -1,0 +1,21 @@
+from habitacion import Habitacion
+
+
+class Vivienda:
+    def __init__(self, calle: str, numero: int, manzana: str, nroCasa: int, superficieTerreno: float):
+        self.calle = calle
+        self.numero = numero
+        self.manzana = manzana
+        self.nroCasa = nroCasa
+        self.superficieTerreno = superficieTerreno
+        self.habitaciones: list[Habitacion] = []
+
+    def getMetrosCuadradosCubiertos(self) -> float:
+        total = 0.0
+        for habitacion in self.habitaciones:
+            total += habitacion.metrosCuadrados
+
+        if total > self.superficieTerreno:
+            raise Exception("La superficie cubierta no puede ser mayor a la superficie del terreno")
+
+        return total
